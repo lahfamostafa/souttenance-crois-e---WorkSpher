@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+
+        header {
+            padding: 20px;
+        }
+
+        header h1 {
+            font-size: 22px;
+            font-weight: 500;
+            color: #1d4ed8;
+        }
+
+        .main-wrapper {
+            display: flex;
+            height: 100vh;
+        }
+
+        .left-panel {
+            width: 30%;
+            border: 1px solid #fca5a5;
+            padding: 15px;
+        }
+
+        .right-panel {
+            flex: 1;
+            border: 1px solid #d946ef;
+            padding: 15px;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        .btn-gray {
+            background: #9ca3af;
+            padding: 8px 14px;
+            border-radius: 4px;
+            border: none;
+        }
+
+        .modelAddWorder {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none; 
+            justify-content: center;
+            align-items: center;
+            background: rgba(0,0,0,0.5);
+        }
+
+        .modelAddWorder.show {
+            display: flex; 
+        }
+
+        .modal-form {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            width: 550px;
+            max-height: 90vh;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            display: grid;
+        }
+
+        .input-field {
+            border: 1px solid #ccc;
+            padding: 10px 14px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+        }
+
+        .btn-blue {
+            background: #2563eb;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: none;
+            width: 200px;
+        }
+
+        .btn-green {
+            background: #16a34a;
+            color: white;
+            padding: 8px 14px;
+            border-radius: 6px;
+            border: none;
+        }
+
+        .btn-light {
+            background: #e5e7eb;
+            padding: 8px 14px;
+            border-radius: 6px;
+            border: none;
+        }
+
+        #experiencesContent {
+            display: none;
+            gap: 10px;
+        }
+
+        #experiencesContent.show {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+        }
+
+        .float-right {
+            text-align: right;
+        }
+
+        .infos{
+            display: grid;
+            gap: 3px;
+        }
+        .details{
+            display: flex;
+            gap: 3px;
+        }
+
+        .myPhoto{
+            width: 100px;
+            border:solid 0.5px black;
+            border-radius: 5px;
+        }
+
+        #profile{
+            padding: 15px;
+            display: none;
+            gap: 20px;
+        }
+
+        #profile.show{
+            display: flex;
+        }
+
+        #closeProfile{
+            background-color: white;
+            border: none;
+            height: 18px;
+            margin-left: 60px;
+        }
+
+        .photo{
+            width: 40px;
+            border-radius: 5px;
+        }
+
+        .satff{
+            display: flex;
+            gap: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            align-items: center;
+            background-color: #eff4ff;
+            border-radius: 10px;
+        }
+
+        #voir{
+            padding: 3px;
+            background-color: white;
+            border-radius: 3px;
+            border: solid 0.5px;
+            float: right;
+        }
+
+        .role{
+            font-size: small;
+            color: rgb(105, 105, 105);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>WorkSpher</h1>
+        <h2>Gestion du personnel</h2>
+    </header>
+
+    <div class="main-wrapper">
+        <div class="left-panel">
+            <button class="btn-gray" id="addWorker">Ajouter un employé</button>
+            <div class="satff">
+                <div>
+                    <img class="photo" src="photo/mostafa.jpg">
+                </div>
+                <div>
+                    <strong>Mostafa</strong>
+                    <p class="role">Technicien IT</p>
+                </div>
+                <div>
+                    <button id="voir">Voir</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-panel">securité</div>
+    </div>
+
+    <div class="modelAddWorder" id="modal">
+        <form class="modal-form">
+
+            <h1>Ajouter un employé</h1>
+
+            <label>Nom</label>
+            <input class="input-field" type="text" placeholder="Ex: Mostafa" required>
+
+            <label>Role</label>
+            <select class="input-field" required>
+                <option>Réceptionniste</option>
+                <option>Technicien IT</option>
+                <option>Agent de sécurité</option>
+                <option>Manager</option>
+                <option>Nettoyage</option>
+            </select>
+
+            <label>Photo (URL)</label>
+            <input class="input-field" type="text" placeholder="https://..." required>
+
+            <label>Email</label>
+            <input class="input-field" type="email" placeholder="email@exemple.com" required>
+
+            <label>Téléphone</label>
+            <input class="input-field" type="number" placeholder="+ 212 6..." required>
+
+            <h2>Expériences professionnelles</h2>
+
+            <div id="experiencesContent">
+                <div>
+                    <h3>Titre</h3>
+                    <input class="input-field" type="text">
+                </div>
+
+                <div>
+                    <h3>Du</h3>
+                    <input class="input-field" type="date">
+                </div>
+
+                <div>
+                    <h3>Au</h3>
+                    <input class="input-field" type="date">
+                </div>
+            </div>
+
+            <button id="experiences" class="btn-blue">Ajouter expérience</button>
+            <br><br>
+
+            <div class="float-right">
+                <button class="btn-green">Enregistrer</button>
+                <button class="btn-light" type="button" id="closeModal">Annuler</button>
+            </div>
+        </form>
+    </div>
+
+    <div id="profile">
+        <div>
+            <img class="myPhoto" src="photo/mostafa.jpg" alt="Mostafa">
+        </div>
+        <div class="infos">
+            <h2 id="name">Mostafa</h2>
+            <p id="role">Technicien IT</p>
+            <br>
+            <div class="details"><strong>Email: </strong><p id="email">lahfa.mostafa1@gmail.com</p></div>
+            <div class="details"><strong>Téléphone: </strong><p id="phone">06060606</p></div>
+            <div class="details"><strong>experiences: </strong><p id="experienceOutPut">BTS</p></div>
+        </div>
+        <button id="closeProfile">✕</button>
+    </div>
+
+    <script>
+        const modal = document.getElementById("modal");
+        const addWorker = document.getElementById("addWorker");
+        const closeModal = document.getElementById("closeModal");
+
+        const experiencesContent = document.getElementById("experiencesContent");
+        const experiences = document.getElementById("experiences");
+        const closeProfile = document.getElementById('closeProfile');
+        const voir =document.getElementById('voir');
+        const profile = document.getElementById('profile')
+
+        voir.addEventListener('click',()=>{
+            profile.classList.add("show")
+        })
+
+        closeProfile.addEventListener('click' , ()=>{
+            profile.classList.remove("show")
+        })
+
+        addWorker.addEventListener("click", () => {
+            modal.classList.add("show");
+        });
+
+        closeModal.addEventListener("click", () => {
+            modal.classList.remove("show");
+        });
+
+        modal.addEventListener("click", (e) => {
+            if (e.target === modal) {
+                modal.classList.remove("show");
+            }
+        });
+
+        experiences.addEventListener("click", (e) => {
+            e.preventDefault();
+            experiencesContent.classList.add("show");
+        });
+    </script>
+
+</body>
+</html>
