@@ -76,11 +76,12 @@
             background: white;
             padding: 25px;
             border-radius: 8px;
-            width: 550px;
+            width: 570px;
             max-height: 90vh;
             overflow-y: auto;
             border: 1px solid #ccc;
             display: grid;
+            gap: 10px;
         }
 
         .input-field {
@@ -97,6 +98,7 @@
             border-radius: 6px;
             border: none;
             width: 200px;
+            margin-top: 10px;
         }
 
         .btn-green {
@@ -114,15 +116,23 @@
             border: none;
         }
 
-        #experiencesContent {
-            display: none;
+        .experiencesContent {
+            padding: 10px 0;
+        }
+        
+        .header-experience{
             gap: 10px;
+            display: flex;
         }
 
-        #experiencesContent.show {
-            display: flex;
-            width: 100%;
-            justify-content: space-between;
+        .annulbtn{
+            text-align:center ;
+        }
+
+        .supprimer{
+            background: unset;
+            border: none;
+            color: red;
         }
 
         .float-right {
@@ -398,21 +408,7 @@
 
             <h2>Expériences professionnelles</h2>
 
-            <div id="experiencesContent">
-                <div>
-                    <h3>Titre</h3>
-                    <input class="input-field" type="text">
-                </div>
-
-                <div>
-                    <h3>Du</h3>
-                    <input class="input-field" type="date">
-                </div>
-
-                <div>
-                    <h3>Au</h3>
-                    <input class="input-field" type="date">
-                </div>
+            <div id="cardExperience">
             </div>
 
             <button id="experiences" class="btn-blue">Ajouter expérience</button>
@@ -448,12 +444,17 @@
         const experiencesContent = document.getElementById("experiencesContent");
         const experiences = document.getElementById("experiences");
         const closeProfile = document.getElementById('closeProfile');
-        const voir =document.querySelector('.voir');
-        const profile = document.getElementById('profile')
+        const voir =document.querySelectorAll('.voir');
+        const profile = document.getElementById('profile');
+        const cardExperience = document.getElementById('cardExperience');
+        const supprimer = document.querySelector('.supprimer')
 
-        voir.addEventListener('click',()=>{
-            profile.classList.add("show")
-        })
+
+        voir.forEach(btn => {
+            btn.addEventListener('click',()=>{
+                profile.classList.add("show")
+            })
+        });
 
         closeProfile.addEventListener('click' , ()=>{
             profile.classList.remove("show")
@@ -481,8 +482,38 @@
 
         experiences.addEventListener("click", (e) => {
             e.preventDefault();
-            experiencesContent.classList.add("show");
+
+            const newDiv= document.createElement('div');
+            newDiv.innerHTML=`
+            <div class="experiencesContent">
+                <div class="header-experience">
+                    <div>
+                        <h4>Titre</h4>
+                        <input class="input-field" type="text">
+                    </div>
+                    <div>
+                        <h4>Du</h4>
+                        <input class="input-field" type="date">
+                    </div>
+                    <div>
+                        <h4>Au</h4>
+                        <input class="input-field" type="date">
+                    </div>
+                </div>
+                <div class="annulbtn">
+                    <button class="supprimer" type="button">Supprimer</button>
+                    </div><br><hr>
+                    </div>`
+
+            cardExperience.appendChild(newDiv)
         });
+
+    cardExperience.addEventListener("click", (e) => {
+        if(e.target.classList.contains("supprimer")){
+            const experiencebox= e.target.closest((".experiencesContent"))
+            experiencebox.remove();
+        }
+    });
     </script>
 
 </body>
