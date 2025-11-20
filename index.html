@@ -32,15 +32,17 @@
         }
 
         .left-panel {
-            width: 30%;
+            width: 25%;
             border: 1px solid #fca5a5;
             padding: 15px;
         }
 
         .right-panel {
+            display: flex;
             flex: 1;
             border: 1px solid #d946ef;
             padding: 15px;
+            background-color: #e0fca547;
         }
 
         button {
@@ -137,19 +139,40 @@
         }
 
         .myPhoto{
-            width: 100px;
+            width: 140px;
             border:solid 0.5px black;
             border-radius: 5px;
         }
 
         #profile{
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
             padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            background-color: rgba(0,0,0,0.5);
             display: none;
-            gap: 20px;
+            justify-content: center;
+            align-items: center;
         }
-
+        
         #profile.show{
             display: flex;
+            transition-duration: 0.5s;
+            
+        }
+        
+        #profile .card{
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            min-width: 350px;
+            display: flex;
+            gap: 20px;
+            position: relative;
         }
 
         #closeProfile{
@@ -163,29 +186,102 @@
             width: 40px;
             border-radius: 5px;
         }
-
-        .satff{
+        
+        .satff , .affecté{
             display: flex;
             gap: 5px;
             padding: 10px;
             margin: 10px 0;
             align-items: center;
+            justify-content: space-between;
             background-color: #eff4ff;
             border-radius: 10px;
+            transition-duration: 0.5s;
+        }
+        
+        .affecté:hover{
+            transform: scale(1.01);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.312);
         }
 
-        #voir{
+        .voir{
             padding: 3px;
             background-color: white;
             border-radius: 3px;
             border: solid 0.5px;
-            float: right;
         }
 
         .role{
             font-size: small;
             color: rgb(105, 105, 105);
         }
+
+        .div{
+            display: grid;
+            width: 50%;
+            gap: 10px;
+        }
+        .flex{
+            width: 100%;
+            height: 600px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .article{
+            border-radius: 10px;
+            padding: 10px;
+            background-color: #e5ecff;
+            cursor: pointer;
+            transition-duration: 0.5s;
+        }
+        
+        .article:hover{
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.312);
+            transform: scale(1.02);
+        }
+        
+        .head{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            div{
+                display: flex;
+                align-items: center;
+                p{
+                    cursor: pointer;
+                    background-color: rgb(5, 205, 5);
+                    border-radius: 2px;
+                    padding: 6px 10px;
+                    margin:0 5px;
+                    transition-duration: 0.3s;
+                }
+                p:hover{
+                    transform: scale(1.07);
+                }
+            }
+        }
+
+        .staffcartLeft{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #annule{
+            color:white;
+            background-color: rgb(255, 0, 0);
+            border-radius: 3px;
+            border: none;
+            width: 20px;
+            height: 23px;
+        }
+
+        .ViewAnnuler{
+            display: flex;
+            gap: 10px;
+        }
+
     </style>
 </head>
 <body>
@@ -199,25 +295,84 @@
         <div class="left-panel">
             <button class="btn-gray" id="addWorker">Ajouter un employé</button>
             <div class="satff">
-                <div>
-                    <img class="photo" src="photo/mostafa.jpg">
+                <div class="staffcartLeft">
+                    <div>
+                        <img class="photo" src="photo/mostafa.jpg">
+                    </div>
+                    <div>
+                        <strong>Mostafa</strong>
+                        <p class="role">Technicien IT</p>
+                    </div>
                 </div>
                 <div>
-                    <strong>Mostafa</strong>
-                    <p class="role">Technicien IT</p>
-                </div>
-                <div>
-                    <button id="voir">Voir</button>
+                    <button class="voir">Voir</button>
                 </div>
             </div>
         </div>
-
-        <div class="right-panel">securité</div>
+        
+        <div class="right-panel">
+            <div class="flex">
+                <div class="div">
+                    <div class="article">
+                        <div class="head">
+                            <h3>Réception</h3>
+                            <div><p>+</p>Max: 2</div>
+                        </div>
+                        <div class="affecté">
+                            <div class="staffcartLeft">
+                                <div>
+                                    <img class="photo" src="photo/mostafa.jpg">
+                                </div>
+                                <div>
+                                    <strong>Mostafa</strong>
+                                    <p class="role">Technicien IT</p>
+                                </div>
+                            </div>
+                            <div class="ViewAnnuler">
+                                <button class="voir">Voir</button>
+                                <button id="annule">✕</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="article">
+                        <div class="head">
+                            <h3>Salle de conférence</h3>
+                            <div><p>+</p>Max: 8</div>
+                        </div>
+                    </div>
+                    <div class="article">
+                        <div class="head">
+                            <h3>Salle des serveurs</h3>
+                            <div><p>+</p>Max: 4</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="div">
+                    <div class="article">
+                        <div class="head">
+                            <h3>Salle de sécurité</h3>
+                            <div><p>+</p>Max: 3</div>
+                        </div>
+                    </div>
+                    <div class="article">
+                        <div class="head">
+                            <h3>Salle du personnel</h3>
+                            <div><p>+</p>Max: 6</div>
+                        </div>
+                    </div>
+                    <div class="article">
+                        <div class="head">
+                            <h3>Salle d'archives</h3>
+                            <div><p>+</p>Max: 2</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="modelAddWorder" id="modal">
         <form class="modal-form">
-
             <h1>Ajouter un employé</h1>
 
             <label>Nom</label>
@@ -271,18 +426,18 @@
     </div>
 
     <div id="profile">
-        <div>
+        <div class="card">
             <img class="myPhoto" src="photo/mostafa.jpg" alt="Mostafa">
+            <div class="infos">
+                <h2 id="name">Mostafa</h2>
+                <p id="role">Technicien IT</p>
+                <br>
+                <div class="details"><strong>Email: </strong><p id="email">lahfa.mostafa1@gmail.com</p></div>
+                <div class="details"><strong>Téléphone: </strong><p id="phone">06060606</p></div>
+                <div class="details"><strong>experiences: </strong><p id="experienceOutPut">BTS</p></div>
+            </div>
+            <button id="closeProfile">✕</button>
         </div>
-        <div class="infos">
-            <h2 id="name">Mostafa</h2>
-            <p id="role">Technicien IT</p>
-            <br>
-            <div class="details"><strong>Email: </strong><p id="email">lahfa.mostafa1@gmail.com</p></div>
-            <div class="details"><strong>Téléphone: </strong><p id="phone">06060606</p></div>
-            <div class="details"><strong>experiences: </strong><p id="experienceOutPut">BTS</p></div>
-        </div>
-        <button id="closeProfile">✕</button>
     </div>
 
     <script>
@@ -293,7 +448,7 @@
         const experiencesContent = document.getElementById("experiencesContent");
         const experiences = document.getElementById("experiences");
         const closeProfile = document.getElementById('closeProfile');
-        const voir =document.getElementById('voir');
+        const voir =document.querySelector('.voir');
         const profile = document.getElementById('profile')
 
         voir.addEventListener('click',()=>{
@@ -302,6 +457,12 @@
 
         closeProfile.addEventListener('click' , ()=>{
             profile.classList.remove("show")
+        })
+
+        profile.addEventListener('click',(e)=>{
+            if(e.target === profile){
+                profile.classList.remove("show")
+            }
         })
 
         addWorker.addEventListener("click", () => {
