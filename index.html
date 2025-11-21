@@ -142,9 +142,9 @@ const maxCapacity = {
     "sécurité":3, "personnel":6, "archives":2
 };
 const autoriseRole = {
-    "Réception":["Réceptionniste","Manager"],
-    "serveurs":["Technicien IT","Manager"],
-    "sécurité":["Agent de sécurité","Manager"],
+    "Réception":["Réceptionniste","Manager","Nettoyage"],
+    "serveurs":["Technicien IT","Manager","Nettoyage"],
+    "sécurité":["Agent de sécurité","Manager","Nettoyage"],
     "personnel":["Réceptionniste","Technicien IT","Agent de sécurité","Manager","Nettoyage"],
     "conférence":["Réceptionniste","Technicien IT","Agent de sécurité","Manager","Nettoyage","Autre"],
     "archives":["Réceptionniste","Technicien IT","Agent de sécurité","Manager","Autre"]
@@ -235,7 +235,7 @@ document.querySelector(".modal-form").addEventListener("submit", e=>{
 function afficheLeftPanel(){
     leftDiv.innerHTML = "";
 
-    const availableWorkers= workers.filter(w=> !assignedWorkers.includes(w));
+    const availableWorkers= workers.filter(w=> !w.currentRoom);
     availableWorkers.forEach(w=>{
         const div = document.createElement("div");
         div.className = "staffcartLeft";
@@ -319,6 +319,7 @@ document.getElementById('assignBtn').addEventListener('click', ()=>{
     availableWorkersDiv.querySelectorAll('input[type="checkbox"]:checked').forEach(cb=>{
         const w = workers.find(w=>w.id===parseInt(cb.value));
         if(w) assignWorkerToRoom(w, currentRoom);
+        afficheLeftPanel()
     });
     saveWorkers();
     assignModal.classList.remove("show");
@@ -343,7 +344,7 @@ function createWorkerCard(worker){
     `;
     div.querySelector('.voir').addEventListener('click', ()=> openProfile(worker));
     div.querySelector('.annule').addEventListener('click', ()=>{
-    removeFromRoom(worker.id, worker.currentRoom);
+        removeFromRoom(worker.id);
     });
     return div;
     
@@ -360,30 +361,44 @@ function assignWorkerToRoom(worker, roomName){
         return;
     }
     worker.currentRoom = roomName;
-    assignedWorkers.push(worker);
-    zone.appendChild(createWorkerCard(worker , roomName));
+    zone.appendChild(createWorkerCard(worker));
 }
 
-function removeFromRoom(id, roomName){
+function removeFromRoom(id){
+    const worker = workers.find(w => w.id === id);
+    if(!worker || !worker.currentRoom) return;
+
+    const roomName = worker.currentRoom;
     const zone = document.querySelector(`[data-zone="${roomName}"] .affecté`);
+
     const card = zone.querySelector(`[data-id="${id}"]`);
     if(card) card.remove();
 
-    const index =assignedWorkers.findIndex(w=>w.id===id)
-    if(index !== -1 ) assignedWorkers.splice(index,1)
+    worker.currentRoom = null;
 
-    const worker = workers.find(w=>w.id===id);
-    if(worker) worker.currentRoom = null;
-    afficheLeftPanel()
+    const index = assignedWorkers.findIndex(w=> w.id===id);
+    if(index !== -1) assignedWorkers.splice(index,1);
+
+    saveWorkers();
+    afficheLeftPanel();
 }
 
 function renderRooms(){
-    Object.keys(maxCapacity).forEach(zoneName=>{
-        const zoneDiv = document.querySelector(`[data-zone="${zoneName}"] .affecté`);
-        zoneDiv.innerHTML = "";
+    // clear zones
+    Object.keys(maxCapacity).forEach(room=>{
+        const zone = document.querySelector(`[data-zone="${room}"] .affecté`);
+        zone.innerHTML = "";
     });
-    workers.filter(w=>w.currentRoom).forEach(w=> assignWorkerToRoom(w, w.currentRoom));
+
+    // reload workers already assigned
+    workers
+        .filter(w => w.currentRoom)
+        .forEach(w => {
+            const zone = document.querySelector(`[data-zone="${w.currentRoom}"] .affecté`);
+            zone.appendChild(createWorkerCard(w));
+        });
 }
+
 
 afficheLeftPanel();
 renderRooms();
