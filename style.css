@@ -334,3 +334,116 @@ header h2 {
     color: red;
     cursor: pointer;
 }
+
+@media (min-width: 1280px) {
+    .main-wrapper {
+        flex-direction: row;
+        padding: 20px 40px;
+    }
+    .left-panel {
+        width: 25%;
+    }
+    .right-panel {
+        width: 75%;
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+    .main-wrapper {
+        flex-direction: row;
+        padding: 15px 30px;
+        gap: 15px;
+    }
+    .left-panel {
+        width: 28%;
+    }
+    .right-panel {
+        width: 72%;
+    }
+    header h1 {
+        font-size: 2em;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .main-wrapper {
+        flex-direction: column;
+        padding: 15px 20px;
+    }
+    .left-panel, .right-panel {
+        width: 100%;
+    }
+    .flex {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .div {
+        width: 100%;
+    }
+    header h1 {
+        font-size: 1.8em;
+    }
+}
+
+@media (max-width: 767px) {
+    header {
+        padding: 15px 10px;
+    }
+    header h1 {
+        font-size: 1.5em;
+    }
+    header h2 {
+        font-size: 1em;
+    }
+    .main-wrapper {
+        flex-direction: column;
+        padding: 10px 10px;
+        gap: 10px;
+    }
+    .left-panel, .right-panel {
+        width: 100%;
+        padding: 10px;
+    }
+    .flex {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .div {
+        width: 100%;
+    }
+    .article {
+        min-height: 100px;
+        padding: 8px;
+    }
+    .staffcartLeft .cartLeft .photo, .cardAffecte .cartLeft .photo {
+        width: 35px;
+        height: 35px;
+    }
+    #profile .card {
+        width: 90%;
+        padding: 15px;
+    }
+    #profile .card img.myPhoto {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) and (orientation: landscape) {
+    .main-wrapper {
+        flex-direction: row;
+        gap: 10px;
+    }
+    .left-panel {
+        width: 35%;
+    }
+    .right-panel {
+        width: 65%;
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) and (orientation: landscape) {
+    .main-wrapper {
+        flex-direction: row;
+    }
+}
