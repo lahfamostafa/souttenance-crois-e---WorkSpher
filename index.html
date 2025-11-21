@@ -72,6 +72,15 @@
         </div>
     </div>
 
+    <div id="assignModal" class="assignModal">
+    <div class="assignContent">
+        <h2>Choisir un employé pour <span id="roomName"></span></h2>
+        <div id="availableWorkers"></div>
+        <button id="assignBtn">Affecter</button>
+        <button id="closeAssignModal">Annuler</button>
+    </div>
+</div>
+
     <div class="modelAddWorder" id="modal">
         <form class="modal-form">
             <h1>Ajouter un employé</h1>
@@ -283,9 +292,12 @@
         })
 
 
-        function createWorkercard(){
+        function createWorkerCard(worker,roomName){
+
+            worker.currentRoom=roomName;
             const newDiv = document.createElement('div')
-            newDiv.className("cardAffecte");
+            newDiv.className="cardAffecte";
+            newDiv.setAttribute("data-id", worker.id);
 
             newDiv.innerHTML=`
             <div class="cartLeft">
@@ -298,13 +310,27 @@
                 </div>
             </div>
             <div class="ViewAnnuler">
-                <button class="voir">Voir</button>
+                <button class="voir" onclick="openProfileById(${worker.id})">Voir</button>
                 <button class="annule" onclick="removeFromRoom(${worker.id} , '${worker.currentRoom}')">✕</button>
             </div>
             `;
             return newDiv;
         }
+    function removeFromRoom(id, roomName) {
+    const zone = document.querySelector(`[data-zone="${roomName}"] .affecté`);
+    const card = zone.querySelector(`[data-id="${id}"]`);
+    if (card) card.remove();
 
+    const worker = workers.find(w => w.id === id);
+    if (worker) worker.currentRoom = null;
+
+    localStorage.setItem("workers", JSON.stringify(workers));
+}
+
+function openProfileById(id) {
+    const worker = workers.find(w => w.id === id);
+    if (worker) openProfile(worker);
+}
 
 const maxCapacity = {
   "Réception": 2,
@@ -315,39 +341,84 @@ const maxCapacity = {
   "archives": 2,
 };
 
-const authorizedRoles = {
+const autoriseRole = {
   "Réception": ["Réceptionniste", "Manager"],
-  "Salle des serveurs": ["Technicien IT", "Manager"],
-  "Salle de sécurité": ["Agent de sécurité", "Manager"],
-  "Salle du personnel": ["Réceptionniste", "Technicien IT", "Agent de sécurité", "Manager", "Nettoyage"],
-  "Salle de conférence": ["Réceptionniste", "Technicien IT", "Agent de sécurité", "Manager", "Nettoyage", "Autre"],
-  "Salle d'archives": ["Réceptionniste", "Technicien IT", "Agent de sécurité", "Manager", "Autre"],
+  "serveurs": ["Technicien IT", "Manager"],
+  "sécurité": ["Agent de sécurité", "Manager"],
+  "personnel": ["Réceptionniste", "Technicien IT", "Agent de sécurité", "Manager", "Nettoyage"],
+  "conférence": ["Réceptionniste", "Technicien IT", "Agent de sécurité", "Manager", "Nettoyage", "Autre"],
+  "archives": ["Réceptionniste", "Technicien IT", "Agent de sécurité", "Manager", "Autre"],
 };
+
+
+function isAutorisé( worker , roomName){
+    const autorisés = autoriseRole[roomName] || [];
+    return autorisés.includes(worker.role) ;
+}
 
 function assignWorkerToRoom(worker, roomName) {
   const zone = document.querySelector(`[data-zone="${roomName}"] .affecté`);
   const nbOccupants = zone.querySelectorAll('.cardAffecte').length;
 
   if (nbOccupants >= maxCapacity[roomName]) {
-    alert(`❌ La salle "${roomName}" a atteint sa capacité maximale (${maxCapacity[roomName]} employés).`);
+    alert(` La salle "${roomName}" a atteint sa capacité maximale (${maxCapacity[roomName]} employés).`);
     return;
   }
 
-  const autorisés = authorizedRoles[roomName] || [];
+  const autorisés = autoriseRole[roomName] || [];
   if (!autorisés.includes(worker.role)) {
-    alert(`❌ Le rôle "${worker.role}" n’est pas autorisé dans la salle "${roomName}".`);
+    alert(` Le rôle "${worker.role}" n’est pas autorisé dans la salle "${roomName}".`);
     return;
   }
 
-  zone.appendChild(createWorkerCard(worker)); 
+  zone.appendChild(createWorkerCard(worker, roomName)); 
 }
 
-function handleAddToZone(roomName) {
-  const unassignedWorker = workers.find(w => isEligible(w, roomName)); 
-  if (unassignedWorker) {
-    assignWorkerToRoom(unassignedWorker, roomName);
-  }
+const assignModal = document.getElementById('assignModal');
+const availableWorkersDiv = document.getElementById('availableWorkers');
+const roomNameSpan = document.getElementById('roomName');
+let currentRoom = "";
+
+function handleAddToZone(roomName){
+    currentRoom = roomName;
+    roomNameSpan.textContent = roomName;
+
+    const availableWorkers = workers.filter(w => isAutorisé(w, roomName) && !w.currentRoom);
+
+    availableWorkersDiv.innerHTML = "";
+
+    if(availableWorkers.length === 0){
+        availableWorkersDiv.innerHTML = "<p>Aucun employé disponible pour cette salle.</p>";
+    } else {
+        availableWorkers.forEach(w => {
+            const div = document.createElement('div');
+            div.className = "workerOption";
+            div.innerHTML = `
+                <input type="checkbox" id="worker-${w.id}" value="${w.id}">
+                <label for="worker-${w.id}">${w.name} (${w.role})</label>
+            `;
+            availableWorkersDiv.appendChild(div);
+        });
+    }
+
+    assignModal.classList.add("show");
 }
+
+document.getElementById('assignBtn').addEventListener('click', () => {
+    const checkedBoxes = availableWorkersDiv.querySelectorAll('input[type="checkbox"]:checked');
+    checkedBoxes.forEach(box => {
+        const workerId = parseInt(box.value);
+        const worker = workers.find(w => w.id === workerId);
+        if(worker) assignWorkerToRoom(worker, currentRoom);
+    });
+    localStorage.setItem("workers", JSON.stringify(workers));
+    assignModal.classList.remove("show");
+});
+
+document.getElementById('closeAssignModal').addEventListener('click', () => {
+    assignModal.classList.remove("show");
+});
+
 
 
 

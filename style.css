@@ -300,3 +300,17 @@ button {
     display: flex;
     gap: 10px;
 }
+
+.assignModal {
+    display: none;
+    position: fixed; top:0; left:0;
+    width:100%; height:100%;
+    background: rgba(0,0,0,0.5);
+}
+.assignModal.show { display: block; }
+.assignContent {
+    background: #fff;
+    margin: 100px auto; padding: 20px;
+    width: 400px; border-radius: 8px;
+}
+.workerOption { margin-bottom: 8px; }
