@@ -23,58 +23,49 @@
         <div class="right-panel">
             <div class="flex">
                 <div class="div">
-                    <div class="article">
+                    <div class="article" data-zone="Réception">
                         <div class="head">
                             <h3>Réception</h3>
-                            <div><p>+</p>Max: 2</div>
+                            <div><p onclick="handleAddToZone('Réception')">+</p>Max: 2</div>
                         </div>
-                        <div class="affecté">
-                            <div class="cartLeft">
-                                <div>
-                                    <img class="photo" src="photo/mostafa.jpg">
-                                </div>
-                                <div>
-                                    <strong>Mostafa</strong>
-                                    <p class="role">Technicien IT</p>
-                                </div>
-                            </div>
-                            <div class="ViewAnnuler">
-                                <button class="voir">Voir</button>
-                                <button id="annule">✕</button>
-                            </div>
-                        </div>
+                        <div class="affecté"></div>
                     </div>
-                    <div class="article">
+                    <div class="article" data-zone="conférence">
                         <div class="head">
                             <h3>Salle de conférence</h3>
-                            <div><p>+</p>Max: 8</div>
+                            <div><p onclick="handleAddToZone('conférence')">+</p>Max: 8</div>
                         </div>
+                        <div class="affecté"></div>
                     </div>
-                    <div class="article">
+                    <div class="article" data-zone="serveurs">
                         <div class="head">
                             <h3>Salle des serveurs</h3>
-                            <div><p>+</p>Max: 4</div>
+                            <div><p onclick="handleAddToZone('serveurs')">+</p>Max: 4</div>
                         </div>
+                        <div class="affecté"></div>
                     </div>
                 </div>
                 <div class="div">
-                    <div class="article">
+                    <div class="article" data-zone="sécurité">
                         <div class="head">
                             <h3>Salle de sécurité</h3>
-                            <div><p>+</p>Max: 3</div>
+                            <div><p onclick="handleAddToZone('sécurité')">+</p>Max: 3</div>
                         </div>
+                        <div class="affecté"></div>
                     </div>
-                    <div class="article">
+                    <div class="article" data-zone="personnel">
                         <div class="head">
                             <h3>Salle du personnel</h3>
-                            <div><p>+</p>Max: 6</div>
+                            <div><p onclick="handleAddToZone('personnel')">+</p>Max: 6</div>
                         </div>
+                        <div class="affecté"></div>
                     </div>
-                    <div class="article">
+                    <div class="article" data-zone="archives">
                         <div class="head">
                             <h3>Salle d'archives</h3>
-                            <div><p>+</p>Max: 2</div>
+                            <div><p onclick="handleAddToZone('archives')">+</p>Max: 2</div>
                         </div>
+                        <div class="affecté"></div>
                     </div>
                 </div>
             </div>
@@ -292,7 +283,74 @@
         })
 
 
-        // console.log(infos)
+        function createWorkercard(){
+            const newDiv = document.createElement('div')
+            newDiv.className("cardAffecte");
+
+            newDiv.innerHTML=`
+            <div class="cartLeft">
+                <div>
+                    <img class="photo" src="${worker.img}">
+                </div>
+                <div>
+                    <strong>${worker.name}</strong>
+                    <p class="role">${worker.role}</p>
+                </div>
+            </div>
+            <div class="ViewAnnuler">
+                <button class="voir">Voir</button>
+                <button class="annule" onclick="removeFromRoom(${worker.id} , '${worker.currentRoom}')">✕</button>
+            </div>
+            `;
+            return newDiv;
+        }
+
+
+const maxCapacity = {
+  "Réception": 2,
+  "conférence": 8,
+  "serveurs": 4,
+  "sécurité": 3,
+  "personnel": 6,
+  "archives": 2,
+};
+
+const authorizedRoles = {
+  "Réception": ["Réceptionniste", "Manager"],
+  "Salle des serveurs": ["Technicien IT", "Manager"],
+  "Salle de sécurité": ["Agent de sécurité", "Manager"],
+  "Salle du personnel": ["Réceptionniste", "Technicien IT", "Agent de sécurité", "Manager", "Nettoyage"],
+  "Salle de conférence": ["Réceptionniste", "Technicien IT", "Agent de sécurité", "Manager", "Nettoyage", "Autre"],
+  "Salle d'archives": ["Réceptionniste", "Technicien IT", "Agent de sécurité", "Manager", "Autre"],
+};
+
+function assignWorkerToRoom(worker, roomName) {
+  const zone = document.querySelector(`[data-zone="${roomName}"] .affecté`);
+  const nbOccupants = zone.querySelectorAll('.cardAffecte').length;
+
+  if (nbOccupants >= maxCapacity[roomName]) {
+    alert(`❌ La salle "${roomName}" a atteint sa capacité maximale (${maxCapacity[roomName]} employés).`);
+    return;
+  }
+
+  const autorisés = authorizedRoles[roomName] || [];
+  if (!autorisés.includes(worker.role)) {
+    alert(`❌ Le rôle "${worker.role}" n’est pas autorisé dans la salle "${roomName}".`);
+    return;
+  }
+
+  zone.appendChild(createWorkerCard(worker)); 
+}
+
+function handleAddToZone(roomName) {
+  const unassignedWorker = workers.find(w => isEligible(w, roomName)); 
+  if (unassignedWorker) {
+    assignWorkerToRoom(unassignedWorker, roomName);
+  }
+}
+
+
+
         afficherWorker()
     </script>
 
