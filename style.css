@@ -1,350 +1,336 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
+    background: #f5f7fa;
+    color: #333;
+}
+
+h1, h2, h3, h4 {
+    font-weight: 600;
 }
 
 header {
-    padding: 20px;
+    background: linear-gradient(to right, #4facfe, #00f2fe);
+    color: white;
+    padding: 20px 40px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 header h1 {
-    font-size: 22px;
-    font-weight: 500;
-    color: #1d4ed8;
+    font-size: 2.2em;
+    margin-bottom: 5px;
+}
+
+header h2 {
+    font-size: 1.2em;
+    font-weight: 400;
 }
 
 .main-wrapper {
     display: flex;
-    height: 100vh;
+    gap: 20px;
+    padding: 20px 40px;
 }
 
 .left-panel {
     width: 25%;
-    border: 1px solid #fca5a5;
+    background: white;
+    border-radius: 12px;
     padding: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.left-panel .btn-gray {
+    background: #eee;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 600;
+}
+
+.left-panel .btn-gray:hover {
+    background: #ddd;
+}
+
+.staffcartLeft {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+.staffcartLeft .cartLeft {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.staffcartLeft .cartLeft .photo {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #4facfe;
+}
+
+.staffcartLeft button.voir {
+    background: #4facfe;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+.staffcartLeft button.voir:hover {
+    background: #00f2fe;
 }
 
 .right-panel {
+    width: 75%;
+}
+
+.flex {
     display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.div {
     flex: 1;
-    border: 1px solid #d946ef;
-    padding: 15px;
-    background-color: #e0fca547;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-button {
+.article {
+    min-height: 120px;
+    background: white;
+    border-radius: 12px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
     cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.btn-gray {
-    background: #9ca3af;
-    padding: 8px 14px;
-    border-radius: 4px;
+.redOne{
+    background-color: rgba(255, 49, 49, 0.199);
+    border: dashed red 0.6px;
+}
+
+.article:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+.article .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.article .head h3 {
+    font-size: 1.1em;
+}
+
+.article .head div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 600;
+    color: #555;
+}
+
+.article .affecté {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.cardAffecte {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f0f8ff;
+    border-radius: 8px;
+    padding: 5px 10px;
+    width: 100%;
+}
+
+.cardAffecte .cartLeft {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.cardAffecte .cartLeft .photo {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #00c6ff;
+}
+
+.cardAffecte .ViewAnnuler button {
+    background: none;
     border: none;
+    cursor: pointer;
+    margin-left: 5px;
+    font-size: 1em;
 }
 
-.modelAddWorder {
+.cardAffecte .ViewAnnuler button.annule {
+    color: red;
+    font-weight: bold;
+}
+
+.assignModal, .modelAddWorder, #profile {
     position: fixed;
-    top: 0;
-    left: 0;
+    top:0;
+    left:0;
     width: 100%;
     height: 100%;
-    display: none; 
+    background: rgba(0,0,0,0.5);
+    display: none;
     justify-content: center;
     align-items: center;
-    background: rgba(0,0,0,0.5);
+    z-index: 100;
 }
 
-.modelAddWorder.show {
-    display: flex; 
+.assignModal.show, .modelAddWorder.show, #profile.show {
+    display: flex;
 }
 
-.modal-form {
+.assignContent, .modal-form, .card {
     background: white;
     padding: 25px;
-    border-radius: 8px;
-    width: 570px;
+    border-radius: 12px;
+    width: 400px;
     max-height: 90vh;
     overflow-y: auto;
-    border: 1px solid #ccc;
-    display: grid;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.assignContent h2, .modal-form h1 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+#assignBtn, #closeAssignModal, .btn-blue, .btn-green, .btn-light {
+    padding: 8px 15px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    margin-top: 10px;
+    transition: 0.2s;
+}
+
+#assignBtn, .btn-green {
+    background: #4facfe;
+    color: white;
+}
+
+#assignBtn:hover, .btn-green:hover {
+    background: #00f2fe;
+}
+
+.btn-blue {
+    background: #1e90ff;
+    color: white;
+}
+
+.btn-blue:hover {
+    background: #0077cc;
+}
+
+.btn-light {
+    background: #eee;
+}
+
+.btn-light:hover {
+    background: #ddd;
+}
+
+.float-right {
+    display: flex;
+    justify-content: flex-end;
     gap: 10px;
 }
 
 .input-field {
+    width: 100%;
+    padding: 8px 10px;
+    margin-top: 4px;
+    margin-bottom: 12px;
     border: 1px solid #ccc;
-    padding: 10px 14px;
-    border-radius: 6px;
-    margin-bottom: 8px;
+    border-radius: 8px;
 }
 
-.btn-blue {
-    background: #2563eb;
-    color: white;
-    padding: 6px 12px;
-    border-radius: 6px;
-    border: none;
-    width: 200px;
-    margin-top: 10px;
-}
-
-.btn-green {
-    background: #16a34a;
-    color: white;
-    padding: 8px 14px;
-    border-radius: 6px;
-    border: none;
-}
-
-.btn-light {
-    background: #e5e7eb;
-    padding: 8px 14px;
-    border-radius: 6px;
-    border: none;
-}
-
-.experiencesContent {
-    padding: 10px 0;
-}
-
-.header-experience{
-    gap: 10px;
+#profile .card {
+    width: 400px;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
 }
 
-.annulbtn{
-    text-align:center ;
+#profile .card img.myPhoto {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #4facfe;
 }
 
-.supprimer{
-    background: unset;
+#profile .card .infos h2 {
+    font-size: 1.4em;
+}
+
+#profile .card .infos .details {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    font-size: 0.95em;
+}
+
+#profile #closeProfile {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
     border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+    color: red;
+}
+#closeAssignModal{
+    background-color: rgba(255, 41, 41, 0.514);
     color: red;
 }
 
-.float-right {
-    text-align: right;
+#closeAssignModal:hover{
+    background-color: rgba(255, 0, 0, 0.541);
 }
 
-.infos{
-    display: grid;
-    gap: 3px;
-}
-.details{
-    display: flex;
-    gap: 3px;
-}
-
-.myPhoto{
-    width: 140px;
-    border:solid 0.5px black;
-    border-radius: 5px;
-}
-
-#profile{
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    padding: 15px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    background-color: rgba(0,0,0,0.5);
-    display: none;
-    justify-content: center;
-    align-items: center;
-}
-
-#profile.show{
-    display: flex;
-    transition-duration: 0.5s;
-    
-}
-
-#profile .card{
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    min-width: 350px;
-    display: flex;
-    gap: 20px;
-    position: relative;
-}
-
-#closeProfile{
+.supprimer{
     background-color: white;
     border: none;
-    height: 18px;
-    margin-left: 60px;
-}
-
-.photo{
-    width: 40px;
-    border-radius: 5px;
-}
-
-.cardAffecte{
-    display: flex;
-    gap: 5px;
-    padding: 10px;
-    margin: 10px 0;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #eff4ff;
-    border-radius: 10px;
-    transition-duration: 0.5s;
-}
-
-.affecté{
-    display: grid;
-}
-
-.staffcartLeft{
-    display: flex;
-    gap: 5px;
-    padding: 10px;
-    margin: 10px 0;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #eff4ff;
-    border-radius: 10px;
-    transition-duration: 0.5s;
-}
-
-.cartLeft{
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.cardAffecte:hover , .staffcartLeft:hover{
-    transform: scale(1.01);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.312);
-}
-
-.voir{
-    padding: 3px;
-    background-color: white;
-    border-radius: 3px;
-    border: solid 0.5px;
-}
-
-.role{
-    font-size: small;
-    color: rgb(105, 105, 105);
-}
-
-.div{
-    display: grid;
-    width: 50%;
-    gap: 10px;
-}
-.flex{
-    width: 100%;
-    height: 600px;
-    display: flex;
-    gap: 10px;
-}
-
-.article{
-    border-radius: 10px;
-    padding: 10px;
-    background-color: #e5ecff;
+    color: red;
     cursor: pointer;
-    transition-duration: 0.5s;
-}
-
-.article:hover{
-    box-shadow: 0 0 12px rgba(0, 0, 0, 0.312);
-    transform: scale(1.02);
-}
-
-.head{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    div{
-        display: flex;
-        align-items: center;
-        p{
-            cursor: pointer;
-            background-color: rgb(5, 205, 5);
-            border-radius: 2px;
-            padding: 6px 10px;
-            margin:0 5px;
-            transition-duration: 0.3s;
-        }
-        p:hover{
-            transform: scale(1.07);
-        }
-    }
-}
-
-
-.annule{
-    color:white;
-    background-color: rgb(255, 0, 0);
-    border-radius: 3px;
-    border: none;
-    width: 20px;
-    height: 23px;
-}
-
-.ViewAnnuler{
-    display: flex;
-    gap: 10px;
-}
-
-.assignModal {
-    display: none;
-    position: fixed;
-    top:0; 
-    left:0;
-    width:100%; 
-    height:100%;
-    background: rgba(0,0,0,0.5);
-}
-
-#roomName{
-    color: rgb(80, 80, 255);
-}
-
-.assignModal.show { 
-    display: block; 
-}
-
-.assignContent {
-    background: #fff;
-    margin: 100px auto; 
-    padding: 20px;
-    width: 500px; 
-    border-radius: 8px;
-}
-.workerOption { 
-    margin: 8px; 
-}
-
-#assignBtn , #closeAssignModal{
-    width: 100px;
-    padding: 4px;
-    border: solid 0.7px;
-    border-radius: 3px;
-    margin-right: 10px;
-}
-
-#assignBtn{
-    background-color: rgb(84, 236, 84);
-    border-color: #16a34a;
-}
-
-#closeAssignModal{
-    background-color: rgb(236, 84, 84);
-    border-color: red;
-    color: white;
 }

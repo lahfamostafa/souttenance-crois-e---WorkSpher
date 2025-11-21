@@ -29,14 +29,14 @@
                     </div>
                     <div class="affecté"></div>
                 </div>
-                <div class="article" data-zone="conférence">
+                <div class="article redOne" data-zone="conférence">
                     <div class="head">
                         <h3>Salle de conférence</h3>
                         <div><p>+</p>Max: 8</div>
                     </div>
                     <div class="affecté"></div>
                 </div>
-                <div class="article" data-zone="serveurs">
+                <div class="article redOne" data-zone="serveurs">
                     <div class="head">
                         <h3>Salle des serveurs</h3>
                         <div><p>+</p>Max: 4</div>
@@ -45,7 +45,7 @@
                 </div>
             </div>
             <div class="div">
-                <div class="article" data-zone="sécurité">
+                <div class="article redOne" data-zone="sécurité">
                     <div class="head">
                         <h3>Salle de sécurité</h3>
                         <div><p>+</p>Max: 3</div>
@@ -59,7 +59,7 @@
                     </div>
                     <div class="affecté"></div>
                 </div>
-                <div class="article" data-zone="archives">
+                <div class="article redOne" data-zone="archives">
                     <div class="head">
                         <h3>Salle d'archives</h3>
                         <div><p>+</p>Max: 2</div>
@@ -384,13 +384,11 @@ function removeFromRoom(id){
 }
 
 function renderRooms(){
-    // clear zones
     Object.keys(maxCapacity).forEach(room=>{
         const zone = document.querySelector(`[data-zone="${room}"] .affecté`);
         zone.innerHTML = "";
     });
 
-    // reload workers already assigned
     workers
         .filter(w => w.currentRoom)
         .forEach(w => {
