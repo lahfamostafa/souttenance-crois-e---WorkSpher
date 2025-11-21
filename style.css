@@ -303,14 +303,48 @@ button {
 
 .assignModal {
     display: none;
-    position: fixed; top:0; left:0;
-    width:100%; height:100%;
+    position: fixed;
+    top:0; 
+    left:0;
+    width:100%; 
+    height:100%;
     background: rgba(0,0,0,0.5);
 }
-.assignModal.show { display: block; }
+
+#roomName{
+    color: rgb(80, 80, 255);
+}
+
+.assignModal.show { 
+    display: block; 
+}
+
 .assignContent {
     background: #fff;
-    margin: 100px auto; padding: 20px;
-    width: 400px; border-radius: 8px;
+    margin: 100px auto; 
+    padding: 20px;
+    width: 500px; 
+    border-radius: 8px;
 }
-.workerOption { margin-bottom: 8px; }
+.workerOption { 
+    margin: 8px; 
+}
+
+#assignBtn , #closeAssignModal{
+    width: 100px;
+    padding: 4px;
+    border: solid 0.7px;
+    border-radius: 3px;
+    margin-right: 10px;
+}
+
+#assignBtn{
+    background-color: rgb(84, 236, 84);
+    border-color: #16a34a;
+}
+
+#closeAssignModal{
+    background-color: rgb(236, 84, 84);
+    border-color: red;
+    color: white;
+}

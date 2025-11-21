@@ -3,76 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>WorkSpher</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header>
-        <h1>WorkSpher</h1>
-        <h2>Gestion du personnel</h2>
-    </header>
+<header>
+    <h1>WorkSpher</h1>
+    <h2>Gestion du personnel</h2>
+</header>
 
-    <div class="main-wrapper">
-        <div class="left-panel">
-            <button class="btn-gray" id="addWorker">Ajouter un employé</button>
-            <div class="aaaa">
-            </div>
-        </div>
-        
-        <div class="right-panel">
-            <div class="flex">
-                <div class="div">
-                    <div class="article" data-zone="Réception">
-                        <div class="head">
-                            <h3>Réception</h3>
-                            <div><p onclick="handleAddToZone('Réception')">+</p>Max: 2</div>
-                        </div>
-                        <div class="affecté"></div>
+<div class="main-wrapper">
+    <div class="left-panel">
+        <button class="btn-gray" id="addWorker">Ajouter un employé</button>
+        <div class="aaaa"></div>
+    </div>
+    
+    <div class="right-panel">
+        <div class="flex">
+            <div class="div">
+                <div class="article" data-zone="Réception">
+                    <div class="head">
+                        <h3>Réception</h3>
+                        <div><p>+</p>Max: 2</div>
                     </div>
-                    <div class="article" data-zone="conférence">
-                        <div class="head">
-                            <h3>Salle de conférence</h3>
-                            <div><p onclick="handleAddToZone('conférence')">+</p>Max: 8</div>
-                        </div>
-                        <div class="affecté"></div>
-                    </div>
-                    <div class="article" data-zone="serveurs">
-                        <div class="head">
-                            <h3>Salle des serveurs</h3>
-                            <div><p onclick="handleAddToZone('serveurs')">+</p>Max: 4</div>
-                        </div>
-                        <div class="affecté"></div>
-                    </div>
+                    <div class="affecté"></div>
                 </div>
-                <div class="div">
-                    <div class="article" data-zone="sécurité">
-                        <div class="head">
-                            <h3>Salle de sécurité</h3>
-                            <div><p onclick="handleAddToZone('sécurité')">+</p>Max: 3</div>
-                        </div>
-                        <div class="affecté"></div>
+                <div class="article" data-zone="conférence">
+                    <div class="head">
+                        <h3>Salle de conférence</h3>
+                        <div><p>+</p>Max: 8</div>
                     </div>
-                    <div class="article" data-zone="personnel">
-                        <div class="head">
-                            <h3>Salle du personnel</h3>
-                            <div><p onclick="handleAddToZone('personnel')">+</p>Max: 6</div>
-                        </div>
-                        <div class="affecté"></div>
+                    <div class="affecté"></div>
+                </div>
+                <div class="article" data-zone="serveurs">
+                    <div class="head">
+                        <h3>Salle des serveurs</h3>
+                        <div><p>+</p>Max: 4</div>
                     </div>
-                    <div class="article" data-zone="archives">
-                        <div class="head">
-                            <h3>Salle d'archives</h3>
-                            <div><p onclick="handleAddToZone('archives')">+</p>Max: 2</div>
-                        </div>
-                        <div class="affecté"></div>
+                    <div class="affecté"></div>
+                </div>
+            </div>
+            <div class="div">
+                <div class="article" data-zone="sécurité">
+                    <div class="head">
+                        <h3>Salle de sécurité</h3>
+                        <div><p>+</p>Max: 3</div>
                     </div>
+                    <div class="affecté"></div>
+                </div>
+                <div class="article" data-zone="personnel">
+                    <div class="head">
+                        <h3>Salle du personnel</h3>
+                        <div><p>+</p>Max: 6</div>
+                    </div>
+                    <div class="affecté"></div>
+                </div>
+                <div class="article" data-zone="archives">
+                    <div class="head">
+                        <h3>Salle d'archives</h3>
+                        <div><p>+</p>Max: 2</div>
+                    </div>
+                    <div class="affecté"></div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <div id="assignModal" class="assignModal">
+<div id="assignModal" class="assignModal">
     <div class="assignContent">
         <h2>Choisir un employé pour <span id="roomName"></span></h2>
         <div id="availableWorkers"></div>
@@ -81,349 +80,315 @@
     </div>
 </div>
 
-    <div class="modelAddWorder" id="modal">
-        <form class="modal-form">
-            <h1>Ajouter un employé</h1>
+<div class="modelAddWorder" id="modal">
+    <form class="modal-form">
+        <h1>Ajouter un employé</h1>
 
-            <label>Nom</label>
-            <input id="name" class="input-field" type="text" placeholder="Ex: Mostafa" required>
+        <label>Nom</label>
+        <input id="name" class="input-field" type="text" placeholder="Ex: Mostafa" required>
 
-            <label>Role</label>
-            <select id="role" class="input-field" required>
-                <option>Réceptionniste</option>
-                <option>Technicien IT</option>
-                <option>Agent de sécurité</option>
-                <option>Manager</option>
-                <option>Nettoyage</option>
-            </select>
+        <label>Role</label>
+        <select id="role" class="input-field" required>
+            <option>Réceptionniste</option>
+            <option>Technicien IT</option>
+            <option>Agent de sécurité</option>
+            <option>Manager</option>
+            <option>Nettoyage</option>
+        </select>
 
-            <label>Photo (URL)</label>
-            <input id="img" class="input-field" type="text" placeholder="https://..." required>
+        <label>Photo (URL)</label>
+        <input id="img" class="input-field" type="text" placeholder="https://..." required>
 
-            <label>Email</label>
-            <input id="email" class="input-field" type="email" placeholder="email@exemple.com" required>
+        <label>Email</label>
+        <input id="email" class="input-field" type="email" placeholder="email@exemple.com" required>
 
-            <label>Téléphone</label>
-            <input id="tele" class="input-field" type="number" placeholder="+ 212 6..." required>
+        <label>Téléphone</label>
+        <input id="tele" class="input-field" type="number" placeholder="+ 212 6..." required>
 
-            <h2>Expériences professionnelles</h2>
+        <h2>Expériences professionnelles</h2>
+        <div id="cardExperience"></div>
 
-            <div id="cardExperience">
-            </div>
+        <button id="addexperiences" class="btn-blue">Ajouter expérience</button>
+        <br><br>
 
-            <button id="addexperiences" class="btn-blue">Ajouter expérience</button>
-            <br><br>
-
-            <div class="float-right">
-                <button class="btn-green">Enregistrer</button>
-                <button class="btn-light" type="button" id="closeModal">Annuler</button>
-            </div>
-        </form>
-    </div>
-
-    <div id="profile">
-        <div class="card">
-            <img class="myPhoto" src="">
-            <div class="infos">
-                <h2 id="nameOut"></h2>
-                <p id="roleOut"></p>
-                <br>
-                <div class="details"><strong>Email: </strong><p id="emailOut"></p></div>
-                <div class="details"><strong>Téléphone: </strong><p id="teleOut"></p></div>
-                <div class="details"><strong>experiences: </strong><p id="experienceOutPut"></p></div>
-            </div>
-            <button id="closeProfile">✕</button>
+        <div class="float-right">
+            <button class="btn-green">Enregistrer</button>
+            <button class="btn-light" type="button" id="closeModal">Annuler</button>
         </div>
+    </form>
+</div>
+
+<div id="profile">
+    <div class="card">
+        <img class="myPhoto" src="">
+        <div class="infos">
+            <h2 id="nameOut"></h2>
+            <p id="roleOut"></p>
+            <br>
+            <div class="details"><strong>Email: </strong><p id="emailOut"></p></div>
+            <div class="details"><strong>Téléphone: </strong><p id="teleOut"></p></div>
+            <div class="details"><strong>Expériences: </strong><p id="experienceOutPut"></p></div>
+        </div>
+        <button id="closeProfile">✕</button>
     </div>
+</div>
 
-    <script>
-        let workers= JSON.parse(localStorage.getItem("workers")) || []
+<script>
+let workers = JSON.parse(localStorage.getItem("workers")) || [];
+let assignedWorkers = [];
 
-        const modal = document.getElementById("modal");
-        const addWorker = document.getElementById("addWorker");
-        const closeModal = document.getElementById("closeModal");
+const maxCapacity = {
+    "Réception":2, "conférence":8, "serveurs":4, 
+    "sécurité":3, "personnel":6, "archives":2
+};
+const autoriseRole = {
+    "Réception":["Réceptionniste","Manager"],
+    "serveurs":["Technicien IT","Manager"],
+    "sécurité":["Agent de sécurité","Manager"],
+    "personnel":["Réceptionniste","Technicien IT","Agent de sécurité","Manager","Nettoyage"],
+    "conférence":["Réceptionniste","Technicien IT","Agent de sécurité","Manager","Nettoyage","Autre"],
+    "archives":["Réceptionniste","Technicien IT","Agent de sécurité","Manager","Autre"]
+};
 
-        const addExperiences = document.getElementById("addexperiences");
-        const closeProfile = document.getElementById('closeProfile');
-        const profile = document.getElementById('profile');
-        const cardExperience = document.getElementById('cardExperience');
-        const supprimer = document.querySelector('.supprimer');
+const modal = document.getElementById("modal");
+const addWorkerBtn = document.getElementById("addWorker");
+const closeModalBtn = document.getElementById("closeModal");
+const addExperienceBtn = document.getElementById("addexperiences");
+const cardExperienceContainer = document.getElementById("cardExperience");
+const leftDiv = document.querySelector(".aaaa");
+const profileModal = document.getElementById("profile");
+const closeProfileBtn = document.getElementById("closeProfile");
 
-        const staffs = document.querySelector('.aaaa')
-        
-        //Worker modale
-        addWorker.addEventListener("click", () => modal.classList.add("show"));
+const assignModal = document.getElementById("assignModal");
+const availableWorkersDiv = document.getElementById("availableWorkers");
+const roomNameSpan = document.getElementById("roomName");
+let currentRoom = "";
 
-        closeModal.addEventListener("click", () => modal.classList.remove("show"));
-        
-        modal.addEventListener("click", (e) => {
-            if (e.target === modal) {
-                modal.classList.remove("show");
-            }
-        });
-        
-        
-        //Experience
-        addExperiences.addEventListener("click", (e) => {
-            e.preventDefault();
-            
-            const newDiv= document.createElement('div');
-            newDiv.innerHTML = `
-            <div class="experiencesContent">
-                <div class="header-experience">
-                    <div>
-                        <h4>Titre</h4>
-                        <input class="input-field inExp" type="text" required>
-                    </div>
-                    <div>
-                        <h4>Du</h4>
-                        <input class="input-field inDate1" type="date" required>
-                    </div>
-                    <div>
-                        <h4>Au</h4>
-                        <input class="input-field inDate2" type="date" required>
-                    </div>
-                </div>
-                <div class="annulbtn">
-                    <button class="supprimer" type="button">Supprimer</button>
-                </div><br><hr>
-            </div>`
-                                    
-            cardExperience.appendChild(newDiv)
-        });
-        
-        cardExperience.addEventListener("click", (e) => {
-            if(e.target.classList.contains("supprimer")){
-                const experiencebox= e.target.closest((".experiencesContent"))
-                experiencebox.remove();
-            }
-        });
-        
-        
-        //affichage
-                                
-        function afficherWorker(){
-            staffs.innerHTML =""
-            
-            workers.forEach(worker =>{
-                const newDiv = document.createElement('div')
-                newDiv.className = "staffcartLeft";
-                newDiv.innerHTML=`
-                <div class="cartLeft">
-                    <div>
-                        <img class="photo" src="${worker.img}">
-                    </div>
-                    <div>
-                        <strong>${worker.name}</strong>
-                        <p class="role">${worker.role}</p>
-                    </div>
-                </div>
-                <div>
-                    <button class="voir" id="${worker.id}">Voir</button>
-                </div>`
-                staffs.appendChild(newDiv)
-            })
-            voirBtn()
-        }
-        
-        function voirBtn(){
-            document.querySelectorAll('.voir').forEach(btn =>{
-                btn.onclick = ()=>{
-                    const id = parseInt(btn.id);
-                    const worker =workers.find(work => work.id === id)
-                    openProfile(worker);
-                }
-            })
-        }
-        
-        function openProfile(w){
-            document.getElementById('nameOut').textContent= w.name;
-            document.getElementById('roleOut').textContent= w.role;
-            document.getElementById('emailOut').textContent= w.email;
-            document.getElementById('teleOut').textContent= w.tele;
-            document.querySelector('.myPhoto').src= w.img;
-
-            if(w.experiences && w.experiences.length > 0){
-                document.getElementById('experienceOutPut').innerHTML=
-                w.experiences.map(e => ` ● ${e.Exp} ( ${e.du} - ${e.au} )`).join("<br>");
-            }else{
-                document.getElementById('experienceOutPut').textContent= "Aucune expérience"
-                
-            }
-            
-            profile.classList.add("show")
-    
-        }
-        closeProfile.onclick = ()=>profile.classList.remove("show")
-
-        profile.onclick = (e)=>{
-            if(e.target === profile){
-                profile.classList.remove("show")
-            }
-        }
-
-        const form = document.querySelector(".modal-form")
-        
-        form.addEventListener("submit" , (e)=>{
-            e.preventDefault();
-            
-            const name = document.getElementById('name').value;
-            const role = document.getElementById('role').value;
-            const img = document.getElementById('img').value;
-            const email = document.getElementById('email').value;
-            const tele = document.getElementById('tele').value;
-            
-
-            const newWorker = {id : Date.now() , name , role , img , email , tele , experiences : []};
-            document.querySelectorAll('.experiencesContent').forEach(exp=>{
-                const Exp = exp.querySelector('.inExp').value;
-                const du = exp.querySelector('.inDate1').value;
-                const au = exp.querySelector('.inDate2').value;
-                newWorker.experiences.push({Exp , du , au})
-            })
-            
-            workers.push(newWorker)
-            localStorage.setItem("workers",JSON.stringify(workers))
-
-            modal.classList.remove("show")
-            
-            form.reset();
-            afficherWorker()
-        })
-
-
-        function createWorkerCard(worker,roomName){
-
-            worker.currentRoom=roomName;
-            const newDiv = document.createElement('div')
-            newDiv.className="cardAffecte";
-            newDiv.setAttribute("data-id", worker.id);
-
-            newDiv.innerHTML=`
-            <div class="cartLeft">
-                <div>
-                    <img class="photo" src="${worker.img}">
-                </div>
-                <div>
-                    <strong>${worker.name}</strong>
-                    <p class="role">${worker.role}</p>
-                </div>
-            </div>
-            <div class="ViewAnnuler">
-                <button class="voir" onclick="openProfileById(${worker.id})">Voir</button>
-                <button class="annule" onclick="removeFromRoom(${worker.id} , '${worker.currentRoom}')">✕</button>
-            </div>
-            `;
-            return newDiv;
-        }
-    function removeFromRoom(id, roomName) {
-    const zone = document.querySelector(`[data-zone="${roomName}"] .affecté`);
-    const card = zone.querySelector(`[data-id="${id}"]`);
-    if (card) card.remove();
-
-    const worker = workers.find(w => w.id === id);
-    if (worker) worker.currentRoom = null;
-
+function saveWorkers(){
     localStorage.setItem("workers", JSON.stringify(workers));
 }
 
-function openProfileById(id) {
-    const worker = workers.find(w => w.id === id);
-    if (worker) openProfile(worker);
+function isAuthorized(worker, roomName){
+    return (autoriseRole[roomName] || []).includes(worker.role);
 }
 
-const maxCapacity = {
-  "Réception": 2,
-  "conférence": 8,
-  "serveurs": 4,
-  "sécurité": 3,
-  "personnel": 6,
-  "archives": 2,
-};
+addWorkerBtn.addEventListener("click", () => modal.classList.add("show"));
+closeModalBtn.addEventListener("click", () => modal.classList.remove("show"));
+modal.addEventListener("click", e => { if(e.target===modal) modal.classList.remove("show"); });
 
-const autoriseRole = {
-  "Réception": ["Réceptionniste", "Manager"],
-  "serveurs": ["Technicien IT", "Manager"],
-  "sécurité": ["Agent de sécurité", "Manager"],
-  "personnel": ["Réceptionniste", "Technicien IT", "Agent de sécurité", "Manager", "Nettoyage"],
-  "conférence": ["Réceptionniste", "Technicien IT", "Agent de sécurité", "Manager", "Nettoyage", "Autre"],
-  "archives": ["Réceptionniste", "Technicien IT", "Agent de sécurité", "Manager", "Autre"],
-};
+addExperienceBtn.addEventListener("click", e => {
+    e.preventDefault();
+    const expDiv = document.createElement("div");
+    expDiv.className = "experiencesContent";
+    expDiv.innerHTML = `
+        <div class="header-experience">
+            <div><h4>Titre</h4><input class="input-field inExp" type="text" required></div>
+            <div><h4>Du</h4><input class="input-field inDate1" type="date" required></div>
+            <div><h4>Au</h4><input class="input-field inDate2" type="date" required></div>
+        </div>
+        <div class="annulbtn">
+            <button class="supprimer" type="button">Supprimer</button>
+        </div><br><hr>
+    `;
+    cardExperienceContainer.appendChild(expDiv);
+});
 
+cardExperienceContainer.addEventListener("click", e => {
+    if(e.target.classList.contains("supprimer")){
+        e.target.closest(".experiencesContent").remove();
+    }
+});
 
-function isAutorisé( worker , roomName){
-    const autorisés = autoriseRole[roomName] || [];
-    return autorisés.includes(worker.role) ;
+document.querySelector(".modal-form").addEventListener("submit", e=>{
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const role = document.getElementById('role').value;
+    const img = document.getElementById('img').value;
+    const email = document.getElementById('email').value;
+    const tele = document.getElementById('tele').value;
+
+    const newWorker = {
+        id: Date.now(),
+        name,
+        role,
+        img,
+        email,
+        tele,
+        experiences: []
+    };
+
+    document.querySelectorAll('.experiencesContent').forEach(exp=>{
+        newWorker.experiences.push({
+            Exp: exp.querySelector('.inExp').value,
+            du: exp.querySelector('.inDate1').value,
+            au: exp.querySelector('.inDate2').value
+        });
+    });
+
+    workers.push(newWorker);
+    saveWorkers();
+    modal.classList.remove("show");
+    e.target.reset();
+    afficheLeftPanel();
+});
+
+function afficheLeftPanel(){
+    leftDiv.innerHTML = "";
+
+    const availableWorkers= workers.filter(w=> !assignedWorkers.includes(w));
+    availableWorkers.forEach(w=>{
+        const div = document.createElement("div");
+        div.className = "staffcartLeft";
+        div.innerHTML = `
+            <div class="cartLeft">
+                <div><img class="photo" src="${w.img}"></div>
+                <div><strong>${w.name}</strong><p class="role">${w.role}</p></div>
+            </div>
+            <div><button class="voir" data-id="${w.id}">Voir</button></div>
+        `;
+        leftDiv.appendChild(div);
+    });
+    voirBtn()
 }
 
-function assignWorkerToRoom(worker, roomName) {
-  const zone = document.querySelector(`[data-zone="${roomName}"] .affecté`);
-  const nbOccupants = zone.querySelectorAll('.cardAffecte').length;
-
-  if (nbOccupants >= maxCapacity[roomName]) {
-    alert(` La salle "${roomName}" a atteint sa capacité maximale (${maxCapacity[roomName]} employés).`);
-    return;
-  }
-
-  const autorisés = autoriseRole[roomName] || [];
-  if (!autorisés.includes(worker.role)) {
-    alert(` Le rôle "${worker.role}" n’est pas autorisé dans la salle "${roomName}".`);
-    return;
-  }
-
-  zone.appendChild(createWorkerCard(worker, roomName)); 
+function voirBtn(){
+    document.querySelectorAll('.aaaa .voir').forEach(btn=>{
+        btn.onclick =()=>{
+            const id = parseInt(btn.dataset.id)
+            const worker=workers.find(w=> w.id ===id);
+            if(worker) openProfile(worker)
+        }
+    })
 }
-
-const assignModal = document.getElementById('assignModal');
-const availableWorkersDiv = document.getElementById('availableWorkers');
-const roomNameSpan = document.getElementById('roomName');
-let currentRoom = "";
+function openProfile(worker){
+    document.getElementById('nameOut').textContent = worker.name;
+    document.getElementById('roleOut').textContent = worker.role;
+    document.getElementById('emailOut').textContent = worker.email;
+    document.getElementById('teleOut').textContent = worker.tele;
+    document.querySelector('.myPhoto').src = worker.img;
+    document.getElementById('experienceOutPut').innerHTML = worker.experiences.length 
+        ? worker.experiences.map(e=>` ● ${e.Exp} (${e.du} - ${e.au})`).join("<br>")
+        : "Aucune expérience";
+    profileModal.classList.add("show");
+}
+leftDiv.addEventListener("click", e => {
+    if(e.target.classList.contains("voir")){
+        const id = parseInt(e.target.dataset.id);
+        const w = workers.find(w=>w.id===id);
+        if(w) openProfile(w);
+    }
+});
+closeProfileBtn.onclick = ()=> profileModal.classList.remove("show");
+profileModal.onclick = e=>{ if(e.target===profileModal) profileModal.classList.remove("show"); }
 
 function handleAddToZone(roomName){
     currentRoom = roomName;
     roomNameSpan.textContent = roomName;
-
-    const availableWorkers = workers.filter(w => isAutorisé(w, roomName) && !w.currentRoom);
-
     availableWorkersDiv.innerHTML = "";
 
-    if(availableWorkers.length === 0){
+    const availableWorkers = workers.filter(w=>isAuthorized(w, roomName) && !w.currentRoom);
+
+    if(!availableWorkers.length){
         availableWorkersDiv.innerHTML = "<p>Aucun employé disponible pour cette salle.</p>";
-    } else {
-        availableWorkers.forEach(w => {
-            const div = document.createElement('div');
-            div.className = "workerOption";
-            div.innerHTML = `
-                <input type="checkbox" id="worker-${w.id}" value="${w.id}">
-                <label for="worker-${w.id}">${w.name} (${w.role})</label>
-            `;
-            availableWorkersDiv.appendChild(div);
-        });
+        return;
     }
+
+    availableWorkers.forEach(w=>{
+        const div = document.createElement("div");
+        div.className = "workerOption";
+        div.innerHTML = `
+            <input type="checkbox" id="worker-${w.id}" value="${w.id}">
+            <label for="worker-${w.id}">${w.name} (${w.role})</label>
+        `;
+        availableWorkersDiv.appendChild(div);
+    });
 
     assignModal.classList.add("show");
 }
 
-document.getElementById('assignBtn').addEventListener('click', () => {
-    const checkedBoxes = availableWorkersDiv.querySelectorAll('input[type="checkbox"]:checked');
-    checkedBoxes.forEach(box => {
-        const workerId = parseInt(box.value);
-        const worker = workers.find(w => w.id === workerId);
-        if(worker) assignWorkerToRoom(worker, currentRoom);
+document.querySelectorAll('.article').forEach(article=>{
+    article.addEventListener('click', e=>{
+        if(!e.target.closest('.cardAffecte') && !e.target.classList.contains('voir')){
+            handleAddToZone(article.getAttribute('data-zone'));
+        }
     });
-    localStorage.setItem("workers", JSON.stringify(workers));
-    assignModal.classList.remove("show");
 });
 
-document.getElementById('closeAssignModal').addEventListener('click', () => {
+document.querySelector('.assignContent').addEventListener('click', e=> e.stopPropagation());
+document.getElementById('assignBtn').addEventListener('click', ()=>{
+    availableWorkersDiv.querySelectorAll('input[type="checkbox"]:checked').forEach(cb=>{
+        const w = workers.find(w=>w.id===parseInt(cb.value));
+        if(w) assignWorkerToRoom(w, currentRoom);
+    });
+    saveWorkers();
     assignModal.classList.remove("show");
+    renderRooms();
 });
+document.getElementById('closeAssignModal').addEventListener('click', ()=>assignModal.classList.remove("show"));
+assignModal.addEventListener('click', e=>{ if(e.target===assignModal) assignModal.classList.remove("show"); });
 
+function createWorkerCard(worker){
+    const div = document.createElement('div');
+    div.className = "cardAffecte";
+    div.dataset.id = worker.id;
+    div.innerHTML = `
+        <div class="cartLeft">
+            <div><img class="photo" src="${worker.img}"></div>
+            <div><strong>${worker.name}</strong><p class="role">${worker.role}</p></div>
+        </div>
+        <div class="ViewAnnuler">
+            <button class="voir" data-id="${worker.id}">Voir</button>
+            <button class="annule">✕</button>
+        </div>
+    `;
+    div.querySelector('.voir').addEventListener('click', ()=> openProfile(worker));
+    div.querySelector('.annule').addEventListener('click', ()=>{
+    removeFromRoom(worker.id, worker.currentRoom);
+    });
+    return div;
+    
+}
 
+function assignWorkerToRoom(worker, roomName){
+    const zone = document.querySelector(`[data-zone="${roomName}"] .affecté`);
+    if(zone.querySelectorAll('.cardAffecte').length >= maxCapacity[roomName]){
+        alert(`La salle "${roomName}" a atteint sa capacité maximale.`);
+        return;
+    }
+    if(!isAuthorized(worker, roomName)){
+        alert(`Le rôle "${worker.role}" n’est pas autorisé ici.`);
+        return;
+    }
+    worker.currentRoom = roomName;
+    assignedWorkers.push(worker);
+    zone.appendChild(createWorkerCard(worker , roomName));
+}
 
+function removeFromRoom(id, roomName){
+    const zone = document.querySelector(`[data-zone="${roomName}"] .affecté`);
+    const card = zone.querySelector(`[data-id="${id}"]`);
+    if(card) card.remove();
 
-        afficherWorker()
-    </script>
+    const index =assignedWorkers.findIndex(w=>w.id===id)
+    if(index !== -1 ) assignedWorkers.splice(index,1)
+
+    const worker = workers.find(w=>w.id===id);
+    if(worker) worker.currentRoom = null;
+    afficheLeftPanel()
+}
+
+function renderRooms(){
+    Object.keys(maxCapacity).forEach(zoneName=>{
+        const zoneDiv = document.querySelector(`[data-zone="${zoneName}"] .affecté`);
+        zoneDiv.innerHTML = "";
+    });
+    workers.filter(w=>w.currentRoom).forEach(w=> assignWorkerToRoom(w, w.currentRoom));
+}
+
+afficheLeftPanel();
+renderRooms();
+
+</script>
 
 </body>
 </html>
