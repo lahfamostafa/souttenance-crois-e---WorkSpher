@@ -1,5 +1,4 @@
 let workers = JSON.parse(localStorage.getItem("workers")) || [];
-let assignedWorkers = [];
 
 const maxCapacity = {
     "Réception":2, "conférence":8, "serveurs":4, 
@@ -242,9 +241,6 @@ function removeFromRoom(id){
     if(card) card.remove();
 
     worker.currentRoom = null;
-
-    const index = assignedWorkers.findIndex(w=> w.id===id);
-    if(index !== -1) assignedWorkers.splice(index,1);
 
     saveWorkers();
     afficheLeftPanel();
